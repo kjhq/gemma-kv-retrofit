@@ -1,0 +1,6 @@
+[project]
+name = "kvr-vllm-bench"
+version = "0.0.0"
+description = "Separate env for benchmarking vLLM prompt_logprobs against the transformers labeller."
+requires-python = ">=3.12,<3.14"
+dependencies = ["vllm>=0.21", "pyarrow>=20"]

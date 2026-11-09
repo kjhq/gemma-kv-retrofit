@@ -1,0 +1,37 @@
+[project]
+name = "gemma-kv-retrofit"
+version = "0.1.0"
+description = "Shrink Gemma 4 E4B's KV cache with config-level attention changes, then heal by logit distillation from the original model."
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.11.0",
+    "transformers>=5.22",
+    "accelerate>=1.10",
+    "datasets>=4.0",
+    "safetensors>=0.6",
+    "numpy>=2.0",
+    "pyarrow>=20",
+    "zstandard>=0.23",
+    "lm-eval>=0.4.9",
+]
+
+[tool.uv]
+package = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu128" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/kvr"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
